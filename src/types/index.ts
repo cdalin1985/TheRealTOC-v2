@@ -46,6 +46,8 @@ export interface Player extends Entity {
   avatarUrl: string | null;
   bio: string | null;
   location: string | null;
+  fargoRating: number | null;
+  robustness: number | null;
 }
 
 export interface PlayerStats {

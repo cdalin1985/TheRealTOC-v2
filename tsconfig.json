@@ -12,15 +12,7 @@
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
     "paths": {
-      "@/*": ["./*"],
-      "@/components/*": ["./src/components/*"],
-      "@/hooks/*": ["./src/hooks/*"],
-      "@/stores/*": ["./src/stores/*"],
-      "@/api/*": ["./src/api/*"],
-      "@/types/*": ["./src/types/*"],
-      "@/utils/*": ["./src/utils/*"],
-      "@/providers/*": ["./src/providers/*"],
-      "@/constants/*": ["./src/constants/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]
