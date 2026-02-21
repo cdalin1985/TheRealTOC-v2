@@ -1,0 +1,1 @@
+export { theme, colors, spacing, borderRadius, typography, shadows, animation } from './theme';
