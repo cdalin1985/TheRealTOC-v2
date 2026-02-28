@@ -1,0 +1,36 @@
+# Matches Flow - Regression Test
+# Tags: regression
+
+appId: com.therealtoc.app
+---
+# Prerequisites: User is logged in
+- runFlow:
+    file: login.yaml
+
+# Navigate to Matches tab
+- tapOn: "Matches"
+
+# Verify matches list loads
+- assertVisible: "Matches"
+
+# Test match details
+- runFlow:
+    when:
+      visible: ".*vs.*"
+    commands:
+      - tapOn: ".*vs.*"
+      - assertVisible: "Match Details"
+      - assertVisible: "Score"
+      
+      # Test back navigation
+      - tapOn: "Back"
+      - assertVisible: "Matches"
+
+# Test empty state (if no matches)
+- runFlow:
+    when:
+      visible: "No matches scheduled"
+    commands:
+      - assertVisible: "Challenge a player to schedule a match"
+      - tapOn: "Challenge Now"
+      - assertVisible: "Select Opponent"

@@ -29,8 +29,8 @@ export function Input({
   ...props
 }: InputProps) {
   const [isFocused, setIsFocused] = useState(false);
-  const borderColor = useSharedValue(colors.border.DEFAULT);
-  const borderWidth = useSharedValue(1);
+  const borderColor = useSharedValue<string>(colors.border.DEFAULT);
+  const borderWidth = useSharedValue<number>(1);
 
   const animatedStyle = useAnimatedStyle(() => ({
     borderColor: borderColor.value,
@@ -39,14 +39,14 @@ export function Input({
 
   const handleFocus = (e: any) => {
     setIsFocused(true);
-    borderColor.value = withTiming(colors.primary[500], { duration: 150 });
+    borderColor.value = withTiming(colors.border.focus, { duration: 150 });
     borderWidth.value = withTiming(2, { duration: 150 });
     onFocus?.(e);
   };
 
   const handleBlur = (e: any) => {
     setIsFocused(false);
-    borderColor.value = withTiming(error ? colors.error.DEFAULT : colors.border.DEFAULT, { duration: 150 });
+    borderColor.value = withTiming(colors.border.DEFAULT, { duration: 150 });
     borderWidth.value = withTiming(1, { duration: 150 });
     onBlur?.(e);
   };

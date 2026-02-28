@@ -12,7 +12,7 @@ export function useCurrentUser() {
     queryFn: async () => {
       const { data: { user }, error } = await supabase.auth.getUser();
       if (error) throw error;
-      return user as User | null;
+      return user as unknown as User | null;
     },
     staleTime: 5 * 60 * 1000,
   });
@@ -34,7 +34,7 @@ export function useLogin() {
         refreshToken: data.session.refresh_token,
         expiresAt: data.session.expires_at ?? Date.now() + 3600000,
       };
-      await storeLogin(data.user as User, tokens);
+      await storeLogin(data.user as unknown as User, tokens);
       queryClient.setQueryData([AUTH_KEY, 'user'], data.user);
     },
   });
@@ -61,7 +61,7 @@ export function useSignUp() {
           refreshToken: data.session.refresh_token,
           expiresAt: data.session.expires_at ?? Date.now() + 3600000,
         };
-        await storeLogin(data.user as User, tokens);
+        await storeLogin(data.user as unknown as User, tokens);
         queryClient.setQueryData([AUTH_KEY, 'user'], data.user);
       }
     },
@@ -97,7 +97,7 @@ export function useAuthInit() {
     }
 
     const { data: { user } } = await supabase.auth.getUser();
-    setUser(user as User);
+    setUser(user as unknown as User);
     setLoading(false);
   }, [setLoading, setUser]);
 

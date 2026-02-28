@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native';
 import { router } from 'expo-router';
-import { Button, Card, CardHeader, LoadingState } from '@/components';
+import { Button, Card, CardHeader } from '@/components';
 import { useAuthStore } from '@/stores/authStore';
 import { useLogout } from '@/hooks/useAuth';
 import { useCurrentPlayer, usePlayerStats } from '@/hooks/usePlayer';
@@ -15,7 +15,7 @@ import { colors, spacing, typography, borderRadius } from '@/constants/theme';
 export default function ProfileScreen() {
   const { user } = useAuthStore();
   const { mutate: logout, isPending } = useLogout();
-  const { data: currentPlayer, isLoading: playerLoading, refetch: refetchPlayer } = useCurrentPlayer();
+  const { data: currentPlayer, refetch: refetchPlayer } = useCurrentPlayer();
   const { data: stats, refetch: refetchStats } = usePlayerStats(currentPlayer?.id ?? null);
   const { data: rankings, refetch: refetchRankings } = useRankings();
   const { data: winStreak } = usePlayerWinStreak(currentPlayer?.id ?? null);

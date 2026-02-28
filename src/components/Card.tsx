@@ -9,6 +9,7 @@ interface CardProps {
   variant?: CardVariant;
   style?: ViewStyle;
   padding?: keyof typeof spacing;
+  testID?: string;
 }
 
 export function Card({
@@ -16,6 +17,7 @@ export function Card({
   variant = 'default',
   style,
   padding = 4,
+  testID,
 }: CardProps) {
   const getStyles = () => {
     switch (variant) {
@@ -45,6 +47,7 @@ export function Card({
 
   return (
     <View
+      testID={testID}
       style={[
         styles.base,
         getStyles(),

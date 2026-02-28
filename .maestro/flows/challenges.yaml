@@ -1,0 +1,59 @@
+# Challenges Flow - Regression Test
+# Tags: regression
+
+appId: com.therealtoc.app
+---
+# Prerequisites: User is logged in
+- runFlow:
+    file: login.yaml
+
+# Navigate to Challenges tab
+- tapOn: "Challenges"
+
+# Verify challenges list loads
+- assertVisible: "Challenges"
+
+# Test creating a challenge
+- tapOn: "New Challenge"
+- assertVisible: "Select Opponent"
+
+# Search for opponent
+- tapOn: "Search players..."
+- inputText: "Test Player"
+- hideKeyboard
+
+# Select opponent (if found)
+- runFlow:
+    when:
+      visible: "Test Player"
+    commands:
+      - tapOn: "Test Player"
+      - assertVisible: "Challenge Details"
+      
+      # Set proposed date
+      - tapOn: "Select Date"
+      - tapOn: "Today"
+      
+      # Set proposed time
+      - tapOn: "Select Time"
+      - tapOn: "14:00"
+      
+      # Add notes
+      - tapOn: "Notes"
+      - inputText: "Looking forward to our match!"
+      
+      # Send challenge
+      - tapOn: "Send Challenge"
+      - assertVisible: "Challenge sent"
+
+# Test responding to challenge
+- runFlow:
+    when:
+      visible: "Pending Challenge"
+    commands:
+      - tapOn: "Pending Challenge"
+      - assertVisible: "Challenge from"
+      
+      # Accept challenge
+      - tapOn: "Accept"
+      - assertVisible: "Challenge accepted"

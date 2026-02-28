@@ -1,0 +1,75 @@
+# Smoke Test Suite - Critical Path Verification
+# Tags: smoke, critical
+# Runs all critical user paths
+
+appId: com.therealtoc.app
+---
+# ============================================
+# 1. App Launch & Onboarding
+# ============================================
+- launchApp:
+    clearState: true
+
+# Verify all main screens are accessible
+- assertVisible: "The Real TOC"
+- tapOn: "Sign In"
+- assertVisible: "Email"
+- assertVisible: "Password"
+
+# Go back and check register
+- tapOn: "Back"
+- tapOn: "Create Account"
+- assertVisible: "Display Name"
+
+# ============================================
+# 2. Login Flow
+# ============================================
+- tapOn: "Back"
+- tapOn: "Sign In"
+
+- tapOn: "Email"
+- inputText: ${MAESTRO_TEST_EMAIL}
+
+- tapOn: "Password"
+- inputText: ${MAESTRO_TEST_PASSWORD}
+
+- tapOn: "Sign In"
+
+# Wait for navigation to complete
+- waitForAnimationToEnd:
+    timeout: 5000
+
+# ============================================
+# 3. Tab Navigation
+# ============================================
+- tapOn: "Home"
+- assertVisible: "Home"
+
+- tapOn: "Challenges"
+- assertVisible: "Challenges"
+
+- tapOn: "Matches"
+- assertVisible: "Matches"
+
+- tapOn: "Standings"
+- assertVisible: "Standings"
+
+- tapOn: "Treasury"
+- assertVisible: "Treasury"
+
+# ============================================
+# 4. Profile Access
+# ============================================
+- tapOn: "Profile"
+- assertVisible: "Profile"
+- assertVisible: "Sign Out"
+
+# ============================================
+# 5. Logout Flow
+# ============================================
+- tapOn: "Sign Out"
+
+# Verify back at login screen
+- waitForAnimationToEnd:
+    timeout: 3000
+- assertVisible: "The Real TOC"

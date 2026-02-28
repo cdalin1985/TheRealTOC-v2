@@ -6,12 +6,10 @@ import {
   withSpring,
   withRepeat,
   withSequence,
-  interpolate,
-  Extrapolation,
 } from 'react-native-reanimated';
 import { animation } from '@/constants/theme';
 
-const { duration, easing } = animation;
+const { duration } = animation;
 
 export function useFade(initialOpacity = 0) {
   const opacity = useSharedValue(initialOpacity);

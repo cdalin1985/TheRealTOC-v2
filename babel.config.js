@@ -7,17 +7,9 @@ module.exports = function(api) {
       [
         'module-resolver',
         {
-          root: ['./'],
+          root: ['./src'],
           alias: {
-            '@': './',
-            '@/components': './src/components',
-            '@/hooks': './src/hooks',
-            '@/stores': './src/stores',
-            '@/api': './src/api',
-            '@/types': './src/types',
-            '@/utils': './src/utils',
-            '@/providers': './src/providers',
-            '@/constants': './src/constants',
+            '@': './src',
           },
         },
       ],

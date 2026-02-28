@@ -1,0 +1,32 @@
+# Onboarding Flow - Critical Path
+# Tags: smoke, critical
+
+appId: com.therealtoc.app
+---
+# Launch app and verify initial screen
+- launchApp:
+    clearState: true
+
+- assertVisible: "The Real TOC"
+
+# Test navigation to login
+- tapOn: "Sign In"
+- assertVisible: "Email"
+- assertVisible: "Password"
+
+# Navigate back and test sign up
+- tapOn: "Back"
+- tapOn: "Create Account"
+- assertVisible: "Display Name"
+- assertVisible: "Email"
+- assertVisible: "Password"
+
+# Test input validation
+- tapOn: "Email"
+- inputText: "invalid-email"
+- tapOn: "Password"
+- inputText: "short"
+
+# Should show validation errors
+- tapOn: "Sign Up"
+- assertVisible: "Please enter a valid email"

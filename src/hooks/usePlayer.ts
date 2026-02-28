@@ -24,7 +24,8 @@ export function useCurrentPlayer() {
           display_name,
           fargo_rating,
           robustness,
-          profile_id
+          profile_id,
+          is_admin
         `)
         .eq('profile_id', user.id)
         .maybeSingle();

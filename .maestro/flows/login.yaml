@@ -1,0 +1,30 @@
+# Login Flow - Critical Path
+# Tags: smoke, critical
+
+appId: com.therealtoc.app
+---
+# Launch app fresh
+- launchApp:
+    clearState: true
+
+# Navigate to login
+- tapOn: "Sign In"
+
+# Test empty form submission
+- tapOn: "Sign In"
+- assertVisible: "Email is required"
+
+# Fill in credentials
+- tapOn: "Email"
+- inputText: ${MAESTRO_TEST_EMAIL}
+
+- tapOn: "Password"
+- inputText: ${MAESTRO_TEST_PASSWORD}
+
+# Submit login
+- tapOn: "Sign In"
+
+# Verify successful login
+- assertVisible: "Home"
+- assertVisible: "Challenges"
+- assertVisible: "Matches"

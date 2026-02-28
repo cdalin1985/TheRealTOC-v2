@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, FlatList, TextInput, RefreshControl, TouchableO
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import { Card, LoadingState, EmptyState } from '@/components';
+import { LoadingState, EmptyState } from '@/components';
 import { useRankings } from '@/hooks/useRankings';
 import { useSeasonStats } from '@/hooks/useEngagement';
 import { colors, spacing, typography, borderRadius } from '@/constants/theme';

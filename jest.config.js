@@ -1,3 +1,6 @@
+/** @type {import('jest').Config} */
+const path = require('path');
+
 module.exports = {
   preset: 'jest-expo',
   transformIgnorePatterns: [
@@ -5,7 +8,10 @@ module.exports = {
   ],
   setupFilesAfterEnv: ['<rootDir>/src/__tests__/setup.ts'],
   testMatch: ['**/__tests__/**/*.test.ts', '**/__tests__/**/*.test.tsx'],
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
+  moduleNameMapper: {
+    '^@/(.*)$': 'C:/Users/14062/Desktop/TheRealTOC-v2/src/$1',
+  },
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',
     '!src/**/*.d.ts',

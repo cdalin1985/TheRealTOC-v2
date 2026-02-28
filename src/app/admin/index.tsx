@@ -22,6 +22,17 @@ export default function AdminScreen() {
   const [newPosition, setNewPosition] = useState('');
   const [saving, setSaving] = useState(false);
 
+  // Compute filtered matches before any early returns (hooks rule)
+  const disputedMatches = useMemo(() => {
+    if (!matches) return [];
+    return matches.filter((m) => m.status === 'disputed');
+  }, [matches]);
+
+  const pendingMatches = useMemo(() => {
+    if (!matches) return [];
+    return matches.filter((m) => m.status === 'in_progress');
+  }, [matches]);
+
   // Only admins can access
   if (currentPlayer && !currentPlayer.is_admin) {
     return (
@@ -39,16 +50,6 @@ export default function AdminScreen() {
       </SafeAreaView>
     );
   }
-
-  const disputedMatches = useMemo(() => {
-    if (!matches) return [];
-    return matches.filter((m) => m.status === 'disputed');
-  }, [matches]);
-
-  const pendingMatches = useMemo(() => {
-    if (!matches) return [];
-    return matches.filter((m) => m.status === 'in_progress');
-  }, [matches]);
 
   const handleMoveRank = async () => {
     if (!selectedPlayerId || !newPosition) return;

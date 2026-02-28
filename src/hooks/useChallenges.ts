@@ -1,6 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/api/supabase';
-import { useAuthStore } from '@/stores/authStore';
 
 const CHALLENGES_KEY = 'challenges';
 
@@ -9,7 +8,11 @@ export function useChallenges() {
     queryKey: [CHALLENGES_KEY],
     queryFn: async () => {
       // Expire overdue challenges on each fetch (belt-and-suspenders with pg_cron)
-      await supabase.rpc('expire_overdue_challenges').catch(() => {});
+      try {
+        await supabase.rpc('expire_overdue_challenges');
+      } catch {
+        // Ignore errors - pg_cron will handle it
+      }
 
       const { data, error } = await supabase
         .from('challenges')

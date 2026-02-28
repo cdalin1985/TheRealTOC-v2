@@ -25,6 +25,9 @@ interface ButtonProps {
   style?: ViewStyle;
   textStyle?: TextStyle;
   haptic?: boolean;
+  testID?: string;
+  accessibilityLabel?: string;
+  accessibilityHint?: string;
 }
 
 export function Button({
@@ -37,6 +40,9 @@ export function Button({
   style,
   textStyle,
   haptic = true,
+  testID,
+  accessibilityLabel,
+  accessibilityHint,
 }: ButtonProps) {
   const { onPressIn, onPressOut, style: animatedStyle } = usePress();
 
@@ -86,6 +92,9 @@ export function Button({
       onPressOut={onPressOut}
       disabled={disabled || loading}
       activeOpacity={1}
+      testID={testID}
+      accessibilityLabel={accessibilityLabel}
+      accessibilityHint={accessibilityHint}
       style={[
         styles.base,
         {

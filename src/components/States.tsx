@@ -36,12 +36,12 @@ export function ErrorState({ message = 'Something went wrong', onRetry }: ErrorS
 }
 
 interface EmptyStateProps {
-  icon?: keyof typeof Ionicons.glyphMap;
+  icon?: keyof typeof Ionicons.glyphMap | undefined;
   title: string;
   message?: string;
 }
 
-export function EmptyState({ icon = 'inbox-outline', title, message }: EmptyStateProps) {
+export function EmptyState({ icon = 'file-tray-outline', title, message }: EmptyStateProps) {
   return (
     <View style={styles.container}>
       <Ionicons name={icon} size={48} color={colors.text.tertiary} />
